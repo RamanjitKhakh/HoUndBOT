@@ -26,7 +26,7 @@ module.exports = function(robot){
 
 	robot.respond(/message active/i, function(msg){
 		console.log("wakafloca flame");		
-		var input = 'What time is it in Tokyo?';
+		var input = 'What is the weather in Philadelphia?';
 		var querySpecificRequestInfo = {
 		  City: 'new york'
 		};
