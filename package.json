@@ -5,7 +5,7 @@
   "author": "raman <ramanjit456@yahoo.co.in>",
   "description": "A simple helpful robot for your Company",
   "dependencies": {
-    "houndify": "0.0.4",
+    "hound": "0.2.1",
     "hubot": "^2.18.0",
     "hubot-diagnostics": "0.0.1",
     "hubot-google-images": "^0.2.6",
