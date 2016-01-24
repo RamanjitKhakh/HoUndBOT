@@ -9,7 +9,7 @@ var exec = require('child_process').exec;
 var cmd = (
 	'python ' +
 	require('path').join(__dirname, '..', 'houndify_python_sdk-0.1.3', 'houndify.py') +
-	' eu4YIoc0quAGGcpph-VuqF1P7Q1viBEJ1gg7c9bPf6I_6H1jOvtmPBvObMJx_m344Htz8uVj1_LOtm4uxiX22g== T6bexd0GJzOELaChLmTu-g=='
+	' ' + process.env.USER_KEY + ' ' + process.env.USER_ID
 );
 
 module.exports = function(robot){
