@@ -4,8 +4,9 @@
 //  Author:
 //  Ramanjit Khakh person@temple.edu
 
-var Houndify = require('houndify').Houndify
+var Houndify = require('houndify').Houndify;
 var exec = require('child_process').exec;
+var say = require('say');
 var cmd = (
 	'python ' +
 	require('path').join(__dirname, '..', 'houndify_python_sdk-0.1.3', 'houndify.py') +
@@ -32,11 +33,13 @@ module.exports = function(robot){
   			if (err) {
   				console.error('Could not access the houndify API.\n\n\n', stdout, '\n\n\n\n' ,err);
   			} else {
-  				var payload = JSON.parse(stdout);
-  				var choiceData = payload.Disambiguation.ChoiceData;
+  				//console.log(stdout);
+                var payload = JSON.parse(stdout);
+  				var choiceData = payload.AllResults[0].WrittenResponseLong;
+                console.log(choiceData);
   				if (choiceData.length > 0) {
-  					var transcription = choiceData[0].FixedTranscription;
-  					console.log(transcription);
+  					
+                    say.speak("Kathy", choiceData);
   				} else {
   					console.log('No choice data available');
   				}

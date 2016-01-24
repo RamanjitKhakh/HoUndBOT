@@ -269,6 +269,7 @@ if __name__ == '__main__':
 			# print "Partial transcript: " + transcript
 			pass
 		def onFinalResponse(self, response):
+                        #print str(response)
 			print json.dumps(response)
 		def onTranslatedResponse(self, response):
 			# print "Translated response: " + response
