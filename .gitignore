@@ -3,3 +3,4 @@ node_modules
 .hubot_history
 scripts/demo.wav
 client_secret.json
+demo.wav
