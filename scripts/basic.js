@@ -27,7 +27,7 @@ module.exports = function(robot){
 
 
 
-	robot.respond(/message active/i, function(msg){
+	robot.respond(/on/i, function(msg){
 		exec(cmd, function(err, stdout, stderr) {
   			if (err) {
   				console.error('Could not access the houndify API.\n\n\n', stdout, '\n\n\n\n' ,err);
