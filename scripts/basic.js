@@ -9,7 +9,7 @@ var exec = require('child_process').exec;
 var cmd = (
 	'python ' +
 	require('path').join(__dirname, '..', 'houndify_python_sdk-0.1.3', 'houndify.py') +
-	' eu4YIoc0quAGGcpph-VuqF1P7Q1viBEJ1gg7c9bPf6I_6H1jOvtmPBvObMJx_m344Htz8uVj1_LOtm4uxiX22g== T6bexd0GJzOELaChLmTu-g=='
+	' ' + process.env.USER_KEY + ' ' + process.env.USER_ID
 );
 
 module.exports = function(robot){
@@ -27,8 +27,8 @@ module.exports = function(robot){
 
 
 
-	robot.respond(/message active/i, function(msg){
-		/*exec(cmd, function(err, stdout, stderr) {
+	robot.respond(/on/i, function(msg){
+		exec(cmd, function(err, stdout, stderr) {
   			if (err) {
   				console.error('Could not access the houndify API.\n\n\n', stdout, '\n\n\n\n' ,err);
   			} else {
@@ -41,9 +41,9 @@ module.exports = function(robot){
   					console.log('No choice data available');
   				}
   			}
-		});*/
+		});
 
-			var input = 'What is the weather in Philadelphia?';
+		/*	var input = 'What is the weather in Philadelphia?';
 			var querySpecificRequestInfo = {
 			  City: 'new york'
 			};
@@ -53,7 +53,7 @@ module.exports = function(robot){
 				console.log(res);	
 			});
 
-
+		*/
 	});
 
 }
