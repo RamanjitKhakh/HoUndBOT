@@ -253,7 +253,7 @@ if __name__ == '__main__':
 	BUFFER_SIZE = 512
 
 	if len(sys.argv) < 3:
-		print "Usage: %s <client key> <client ID> <wav file> [ <more wav files> ]" % sys.argv[0]
+		# print "Usage: %s <client key> <client ID> <wav file> [ <more wav files> ]" % sys.argv[0]
 		sys.exit(0)
 
 	CLIENT_KEY = sys.argv[1]
@@ -266,22 +266,25 @@ if __name__ == '__main__':
 	#
 	class MyListener(HoundListener):
 		def onPartialTranscript(self, transcript):
-			print "Partial transcript: " + transcript
+			# print "Partial transcript: " + transcript
+			pass
 		def onFinalResponse(self, response):
-			print "Final response: " + str(response)
+			print json.dumps(response)
 		def onTranslatedResponse(self, response):
-			print "Translated response: " + response
+			# print "Translated response: " + response
+			pass
 		def onError(self, err):
-			print "ERROR"
+			#print "ERROR"
+			pass
 
 	client = StreamingHoundClient(CLIENT_KEY, CLIENT_ID)
 	## Pretend we're at SoundHound HQ.  Set other fields as appropriate
 	client.setLocation(37.388309, -121.973968)
-
+	# print "Recording..."
 	recorder.record_to_file('demo.wav')
 
 	#for fname in sys.argv[3:]:
-	print "============== %s ===================" 
+	# print "============== %s ===================" 
 	audio = wave.open('demo.wav')
 	samples = audio.readframes(BUFFER_SIZE)
 	finished = False
