@@ -14,6 +14,7 @@ import uuid
 import urllib
 import zlib
 
+
 HOUND_SERVER = "api.houndify.com"
 TEXT_ENDPOINT = "/v1/text"
 
@@ -246,11 +247,12 @@ if __name__ == '__main__':
 	# We'll accept WAV files but it should be straightforward to 
 	# use samples from a microphone or other source
 	import wave
+	import recorder
 	import sys
 
 	BUFFER_SIZE = 512
 
-	if len(sys.argv) < 4:
+	if len(sys.argv) < 3:
 		print "Usage: %s <client key> <client ID> <wav file> [ <more wav files> ]" % sys.argv[0]
 		sys.exit(0)
 
@@ -276,16 +278,18 @@ if __name__ == '__main__':
 	## Pretend we're at SoundHound HQ.  Set other fields as appropriate
 	client.setLocation(37.388309, -121.973968)
 
-	for fname in sys.argv[3:]:
-		print "============== %s ===================" % fname
-		audio = wave.open(fname)
+	recorder.record_to_file('demo.wav')
+
+	#for fname in sys.argv[3:]:
+	print "============== %s ===================" 
+	audio = wave.open('demo.wav')
+	samples = audio.readframes(BUFFER_SIZE)
+	finished = False
+	client.start(MyListener())
+	while not finished:
+		finished = client.fill(samples)
+		time.sleep(0.032)			## simulate real-time so we can see the partial transcripts
 		samples = audio.readframes(BUFFER_SIZE)
-		finished = False
-		client.start(MyListener())
-		while not finished:
-			finished = client.fill(samples)
-			time.sleep(0.032)			## simulate real-time so we can see the partial transcripts
-			samples = audio.readframes(BUFFER_SIZE)
-			if len(samples) == 0:
-				break
-		client.finish()
+		if len(samples) == 0:
+			break
+	client.finish()
